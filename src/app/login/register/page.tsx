@@ -1,4 +1,4 @@
-import { Form } from "@/src/components/login/form";
+import { FormRegister } from "@/src/components/login/form-register";
 
 export default function Login({
   searchParams,
@@ -12,10 +12,10 @@ export default function Login({
         <h1
           className="text-3xl font-semibold text-primary-100 mb-6 text-center"
         >Iniciar sesión</h1>
-        <Form />
+        <FormRegister />
       </section>
       {searchParams.message && (
-        <p className="text-center mt-4 text-red-800 font-medium text-sm">{searchParams.message}</p>
+        <p className="text-center mt-4 text-red-800">{searchParams.message}</p>
       )}
     </main>
   );
