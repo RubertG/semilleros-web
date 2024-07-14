@@ -3,7 +3,7 @@ import { Form } from "@/src/components/login/form";
 export default function Login({
   searchParams,
 }: {
-  searchParams: { message: string };
+  searchParams: { mensaje: string };
 }) {
 
   return (
@@ -14,8 +14,8 @@ export default function Login({
         >Iniciar sesión</h1>
         <Form />
       </section>
-      {searchParams.message && (
-        <p className="text-center mt-4 text-red-800 font-medium text-sm">{searchParams.message}</p>
+      {searchParams.mensaje && (
+        <p className="text-center mt-4 text-red-800 text-sm">{searchParams.mensaje}</p>
       )}
     </main>
   );
