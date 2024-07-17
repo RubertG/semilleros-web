@@ -20,7 +20,7 @@ export const signIn = async (data: SignInInputs) => {
     return redirect("/login?mensaje=Usuario o contrase%C3%B1a incorrectos");
   }
 
-  return redirect("/protected");
+  return redirect("/proyectos");
 };
 
 export const signUp = async (data: SignUpInputs) => {
