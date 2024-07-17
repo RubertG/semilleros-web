@@ -4,7 +4,7 @@ interface Props {
   }
 }
 
-export default function AvancesPage({ 
+export default function ProgressPage({ 
   params: { id } 
 }: Props) {
   return (
