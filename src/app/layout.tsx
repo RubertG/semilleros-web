@@ -6,7 +6,7 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
  });
 
-const defaultUrl = process.env.VERCEL_URL
+export const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
