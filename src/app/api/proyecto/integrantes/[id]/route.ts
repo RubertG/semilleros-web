@@ -24,3 +24,30 @@ export async function GET(request: Request, context: Context) {
 
   return NextResponse.json([]);
 }
+
+/*
+DELETE /api/proyecto/integrantes/[id]
+
+elimina un integrante del proyecto
+
+*/
+
+export async function DELETE(request: Request, context: Context) {
+  const { id } = context.params;
+  const params = await request.json();
+  const supabase = createClient();
+
+  const { data: relacion } = await supabase
+    .from("Estudiante_proyecto")
+    .delete()
+    .eq("id_proyecto", id)
+    .eq("id_estudiante", params.id_estudiante).select();
+  
+
+  if (relacion) {
+    return NextResponse.json(relacion);
+  }
+   return NextResponse.json([]);
+
+
+  }
