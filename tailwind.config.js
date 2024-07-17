@@ -21,6 +21,7 @@ module.exports = {
         "primary-300": "#c8ffff",
         "accent-100": "#00bfff",
         "accent-200": "#00619a",
+        "accent-300": "#004066",
         "text-200": "#5c5c5c",
         "bg-200": "#f5f5f5",
         "bg-300": "#cccccc",
