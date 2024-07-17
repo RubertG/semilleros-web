@@ -22,7 +22,7 @@ export async function GET(request: Request, context: Context) {
     return NextResponse.json(proyecto);
   }
 
-  return NextResponse.json([]);
+  return NextResponse.json({ mensaje: "No fue posible obtener los integrantes" }, { status: 500 });
 }
 
 /*
@@ -42,12 +42,12 @@ export async function DELETE(request: Request, context: Context) {
     .delete()
     .eq("id_proyecto", id)
     .eq("id_estudiante", params.id_estudiante).select();
-  
+
 
   if (relacion) {
     return NextResponse.json(relacion);
   }
-   return NextResponse.json([]);
+  return NextResponse.json({ mensaje: "No fue posible eliminar el integrante" }, { status: 500 });
 
 
-  }
+}

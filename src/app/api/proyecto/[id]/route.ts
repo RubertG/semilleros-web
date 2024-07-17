@@ -22,7 +22,7 @@ export async function GET(request: Request, context: Context) {
     return NextResponse.json(proyecto);
   }
 
-  return NextResponse.json([]);
+  return NextResponse.json({mensaje: "No fue posible obtener el proyecto"},{status: 500});
 }
 
 /*
@@ -49,7 +49,7 @@ export async function PUT(request: Request, context: Context) {
     return NextResponse.json(proyecto);
   }
 
-  return NextResponse.json([]);
+  return NextResponse.json({mensaje: "No fue posible editar el proyecto"},{status: 500});
 }
 
 /*
@@ -63,9 +63,9 @@ export async function DELETE(request: Request, context: Context) {
   const supabase = createClient();
 
   const { data: proyecto } = await supabase.from("Proyecto").delete().eq("id", id).select();
-  if(proyecto){
+  if (proyecto) {
     return NextResponse.json(proyecto);
   }
 
-  return NextResponse.json([]);
+  return NextResponse.json({mensaje: "No fue posible eliminar el proyecto"},{status: 500});
 }
