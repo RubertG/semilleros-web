@@ -1,6 +1,6 @@
 "use client"
 
-import { signUp } from "@/src/app/server-actions/login/auth-actions"
+import { signUp } from "@/src/server-actions/login/auth-actions"
 import Link from "next/link"
 import { SubmitButton } from "../common/submit-button"
 import { useForm } from "@/src/hooks/common/use-form"
