@@ -53,5 +53,5 @@ export const signUp = async (data: SignUpInputs) => {
     return redirect("/login/register?mensaje=Correo registrado previamente");
   }
 
-  return redirect("/login/register?mensaje=Mira tu correo para confirmar tu cuenta");
+  return redirect("/login/register?mensaje-confirmacion=Mira tu correo para confirmar tu cuenta");
 };

@@ -3,7 +3,10 @@ import { FormRegister } from "@/src/components/login/form-register";
 export default function Login({
   searchParams,
 }: {
-  searchParams: { mensaje: string };
+  searchParams: { 
+    mensaje: string 
+    "mensaje-confirmacion": string
+  };
 }) {
 
   return (
@@ -16,6 +19,9 @@ export default function Login({
       </section>
       {searchParams.mensaje && (
         <p className="text-center mt-4 text-red-800 text-sm">{searchParams.mensaje}</p>
+      )}
+      {searchParams["mensaje-confirmacion"] && (
+        <p className="text-center mt-4 text-primary-100 text-sm">{searchParams["mensaje-confirmacion"]}</p>
       )}
     </main>
   );
