@@ -4,7 +4,7 @@ import { signIn } from "@/src/app/server-actions/login/auth-actions"
 import Link from "next/link"
 import { SubmitButton } from "../common/submit-button"
 import { useForm } from "@/src/hooks/common/use-form"
-import { signInSchema } from "@/src/app/validations/login/sign-in-schema"
+import { signInSchema } from "@/src/validations/login/sign-in-schema"
 import { SignInInputs } from "@/src/types/login/login"
 
 export const Form = () => {
