@@ -31,5 +31,8 @@ export async function POST(request: Request, context: Context) {
             return NextResponse.json(relacion);
         }
     }
-    return NextResponse.json([]);
+    return NextResponse.json(
+        {"mensaje": "No se encontraron integrantes para este proyecto"},
+        {"status": 500}
+    );
 }

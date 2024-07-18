@@ -16,13 +16,15 @@ export async function GET(request: Request, context: Context) {
   const { id } = context.params;
   const supabase = createClient();
 
-  const { data: avances } = await supabase.from("Avance").select("*").eq("id_proyecto", id);
-
+  const { data: avances } = await supabase.from("Avance").select("*, archivos: Archivo(*)").eq("id_proyecto", id);
+  
   if (avances) {
     return NextResponse.json(avances);
   }
-
-  return NextResponse.json([]);
+  return NextResponse.json(
+    {"mensaje": "No se encontraron avances para este proyecto"},
+    {"status": 500}
+  );
 }
 
 /*
@@ -35,6 +37,8 @@ export async function POST(request: Request, context: Context) {
   const params = await request.json();
   const supabase = createClient();
 
+  const { data: proyecto } = await supabase.from("Proyecto").select("nombre").eq("id", id).single();
+
   const { data: avance } = await supabase.from("Avance").insert([
     {
       nombre: params.nombre,
@@ -44,10 +48,39 @@ export async function POST(request: Request, context: Context) {
     }])
     .select();
   
+  const misArchivos: File[] = params.archivos;
+
+  if (misArchivos && avance) {
+    await Promise.all(misArchivos.map(async (miArchivo) => {
+      const { data } = await supabase.storage
+        .from("archivos-avances")
+        .upload(`${proyecto?.nombre}/${miArchivo.name}`, miArchivo);
+      
+    if(data){
+      const { data: archivo } = await supabase.from("Archivo").insert(
+        {
+          nombre: miArchivo.name,
+          ruta: data.path,
+          id_avance: avance[0].id
+        });
+      
+        if(!archivo){
+          return NextResponse.json(
+            {"mensaje": "No se pudo crear el archivo en el avance"},
+            {"status": 500}
+          );
+        }
+    }
+    }));
+  }
+  
   if (avance) {
     return NextResponse.json(avance);
   }
-  return NextResponse.json([]);
+  return NextResponse.json(
+    {"mensaje": "No se pudo crear el avance"},
+    {"status": 500}
+  );
 }
 
 /*
@@ -70,7 +103,10 @@ export async function PUT(request: Request, context: Context) {
   if (avance) {
     return NextResponse.json(avance);
   }
-  return NextResponse.json([]);
+  return NextResponse.json(
+    {"mensaje": "No se pudo actualizar el avance"},
+    {"status": 500}
+  );
 }
 
 /*
@@ -87,5 +123,8 @@ export async function DELETE(request: Request, context: Context) {
   if (avance) {
     return NextResponse.json(avance);
   }
-  return NextResponse.json([]);
+  return NextResponse.json(
+    {"mensaje": "No se pudo eliminar el avance"},
+    {"status": 500}
+  );
 }
