@@ -1,11 +1,14 @@
+import { Database } from "@/src/types/db/supabase";
 import { createClient } from "@/src/utils/supabase/server";
 import { NextResponse } from "next/server";
+import { Interface } from "readline";
 
 interface Context {
   params: {
     id: string;
   };
 }
+
 
 /*
 GET /api/proyecto/[id]
