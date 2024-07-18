@@ -6,7 +6,7 @@ export async function GET(request: Request, response: Response) {
 
   const { data: facultades, error } = await supabase.from("Facultad").select("*");
 
-  if (!error) {
+  if (error) {
     return NextResponse.json(null, { status: 500 });
   }
 

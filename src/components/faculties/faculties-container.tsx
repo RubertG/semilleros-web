@@ -7,14 +7,13 @@ interface Props {
   className?: string;
 }
 
-export const revalidate = 3600;
-
-type Data = Database["public"]["Tables"]["Facultad"]["Row"][];
+const getData = async () => {
+  const res = await fetch(`${defaultUrl}/api/facultad`, { cache: 'no-store' });
+  return res.json() as Promise<Database["public"]["Tables"]["Facultad"]["Row"][]> | null;
+};
 
 export const FacultiesContainer = async ({ className }: Props) => {
-  const res = await fetch(`${defaultUrl}/api/facultad`);
-
-  const data = await res.json() as Data | null;
+  const data = await getData();
 
   if (!data) {
     return (
