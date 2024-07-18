@@ -34,7 +34,7 @@ async function FacultiesPage({
       <h1
         className="text-3xl lg:text-4xl font-bold text-primary-100 text-center mt-6 lg:mt-10"
       >{data.nombre}</h1>
-      <ProjectContainer projects={data.proyectos} className="mt-10" />
+      <ProjectContainer projects={data.proyectos} className="my-10" />
     </main>
   )
 }
