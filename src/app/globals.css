@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+textarea {
+  field-sizing: content;
+  resize: none;
+}
+
+.entry {
+  opacity: 0;
+  animation: entry 0.2s ease-in-out both;
+}
+
+@keyframes entry {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

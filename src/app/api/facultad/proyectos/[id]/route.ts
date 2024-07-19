@@ -50,8 +50,6 @@ export async function GET(request: Request, context: Context) {
     .select(`id, nombre, descripcion, estado, tutor:id_tutor(*), carrera:id_carrera(*)`)
     .in("id_semillero", semillero.map((semillero) => semillero.id));
 
-  console.log(proyectos);
-
   if (error || !proyectos) {
     return NextResponse.json({ error: "Error al obtener los proyectos" }, { status: 500 });
   }

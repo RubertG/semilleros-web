@@ -1,6 +1,7 @@
 import { ProjectContainer } from "@/src/components/faculties/projects-container";
 import { defaultUrl } from "../../layout"
 import { Faculty, ProjectType } from "@/src/types/faculties/faculties";
+import { Error } from "@/src/components/common/error";
 
 interface FetchType extends Faculty {
   proyectos: ProjectType[]
@@ -20,17 +21,12 @@ async function FacultiesPage({
 
   if ('error' in data && typeof data.error === 'string') {
     return (
-      <main className="px-4 h-dvh flex flex-col items-center justify-center -mt-5">
-        <h1
-          className="text-3xl lg:text-4xl font-bold text-primary-100 text-center mt-6 lg:mt-10"
-        >Ups, hubo un error :(</h1>
-        <p className="text-center mt-3 text-text-100">{data.error}</p>
-      </main>
+      <Error message={data.error} />
     )
   }
 
   return (
-    <main className="px-4 max-w-6xl mx-auto">
+    <main className="px-4 max-w-6xl lg:px-0 mx-auto">
       <h1
         className="text-3xl lg:text-4xl font-bold text-primary-100 text-center mt-6 lg:mt-10"
       >{data.nombre}</h1>
