@@ -14,18 +14,17 @@ Añade un nuevo integrante al proyecto proyecto
 */
 export async function POST(request: Request, context: Context) {
     const { id } = context.params;
-    const params = await request.json();
+    const body = await request.json();
     const supabase = createClient();
 
-    const { data: estudiante } = await supabase.from("Usuario").select("*").eq("correo", params.correo).single();
+    const { data: estudiante } = await supabase.from("Usuario").select("*").eq("correo", body.correo).single();
 
     if (estudiante) {
-        const { data: relacion } = await supabase.from("Estudiante_proyecto").insert([
-            {
-                id_estudiante: estudiante.id,
-                id_proyecto: id
-            }])
-            .select();
+        const { data: relacion } = await supabase.from("Estudiante_proyecto").insert({
+            id_estudiante: estudiante.id,
+            id_proyecto: id
+        })
+        .select();
         
         if (relacion) {
             return NextResponse.json(relacion);
