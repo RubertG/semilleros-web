@@ -1,14 +1,11 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { defaultUrl } from "@/src/const/common/consts";
 
 const poppins = Poppins({ 
   subsets: ["latin"], 
   weight: ["300", "400", "500", "600", "700", "800", "900"],
  });
-
-export const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),

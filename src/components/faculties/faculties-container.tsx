@@ -1,7 +1,7 @@
-import { defaultUrl } from "@/src/app/layout";
 import { Database } from "@/src/types/db/supabase";
 import { FacultyCard } from "./faculty-card";
 import clsx from "clsx";
+import { defaultUrl } from "@/src/const/common/consts";
 
 interface Props {
   className?: string;
@@ -27,14 +27,14 @@ export const FacultiesContainer = async ({ className }: Props) => {
         const isLast = index === data.length - 1;
 
         return (
-          <>
-            <li key={facultad.id}>
+          <li key={facultad.id}>
+            <>
               <FacultyCard key={facultad.id} faculty={facultad} />
-            </li>
+            </>
             <hr className={clsx("h-[1px] bg-gray-400 bg-opacity-20 w-full border-none outline-none", {
               "hidden": isLast
             })} />
-          </>
+          </li>
         )
       })}
     </ul>

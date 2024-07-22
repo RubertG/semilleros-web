@@ -11,7 +11,7 @@ export const FacultyCard = ({
 }: Props) => {
   return (
     <Link
-      className="flex items-center justify-between lg:px-3.5 py-2.5 gap-1 lg:hover:bg-bg-200 rounded-lg"
+      className="flex items-center justify-between mb-1 lg:px-3.5 py-2.5 gap-1 lg:hover:bg-bg-200 rounded-lg"
       href={`/facultades/${id}`}>
       <p className="text-text-100 lg:text-lg font-medium">{nombre}</p>
       <ExternalLink className="stroke-text-300 w-5 h-5" />

@@ -1,7 +1,7 @@
 import { ProjectContainer } from "@/src/components/faculties/projects-container";
-import { defaultUrl } from "../../layout"
 import { Faculty, ProjectType } from "@/src/types/faculties/faculties";
 import { Error } from "@/src/components/common/error";
+import { defaultUrl } from "@/src/const/common/consts";
 
 interface FetchType extends Faculty {
   proyectos: ProjectType[]

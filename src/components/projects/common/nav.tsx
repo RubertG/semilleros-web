@@ -1,6 +1,6 @@
 "use client"
 
-import { useParams, usePathname } from "next/navigation"
+import { useParams, usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { ChevronsRight, Home, Logout, Menu, Persons, UserCircle } from "../../common/icons"
 import Link from "next/link"
@@ -30,6 +30,7 @@ export const Nav = () => {
   const pathName = usePathname()
   const supabase = createClient()
   const { id } = useParams()
+  const router = useRouter()
 
   useEffect(() => {
     const fetchUserName = async () => {
@@ -49,7 +50,7 @@ export const Nav = () => {
 
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut()
-    console.log(error);
+    router.push("/login")
   }
 
   return (

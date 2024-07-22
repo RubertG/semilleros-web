@@ -1,9 +1,9 @@
 import { ButtonLink } from "@/src/components/common/button"
-import { defaultUrl } from "../../layout"
 import { Database } from "@/src/types/db/supabase"
 import { Error } from "@/src/components/common/error"
 import { Popup } from "@/src/components/common/popup"
 import Link from "next/link"
+import { defaultUrl } from "@/src/const/common/consts"
 
 interface Props {
   params: {
