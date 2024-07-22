@@ -60,10 +60,10 @@ export default async function ProjectPage({
       <h1
         className="text-3xl lg:text-4xl font-bold text-primary-100 text-center mt-6 lg:mt-10"
       >{data.nombre}</h1>
-      <p className="text-text-100 lg:text-lg mt-7">
+      <p className="text-text-100 mt-7">
         {data.descripcion}
       </p>
-      <p className="text-text-100 lg:text-lg mt-3 mb-8">
+      <p className="text-text-100 mt-3 mb-8">
         {data.carrera.nombre} | {data.tutor.nombre}
       </p>
       <ButtonLink href="?formulario=true">Postularse</ButtonLink>
@@ -72,10 +72,10 @@ export default async function ProjectPage({
       >
         {data.semillero.nombre}
       </h2>
-      <p className="text-text-100 lg:text-lg mt-7">
+      <p className="text-text-100 mt-7">
         {data.semillero.descripcion}
       </p>
-      <p className="text-text-100 lg:text-lg mt-3 mb-16">
+      <p className="text-text-100 mt-3 mb-16">
         {data.semillero.coordinador.nombre}
       </p>
       {

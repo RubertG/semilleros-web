@@ -29,7 +29,6 @@ export default async function MembersPage({
         {
           rol === "tutor" && (
             <ButtonLink
-              className="lg:text-base"
               href={`/proyectos/${id}/integrantes?formulario=true`}>
               Agregar integrante
             </ButtonLink>
