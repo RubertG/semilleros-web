@@ -27,5 +27,4 @@ export async function POST(request: Request) {
   else {
     return NextResponse.json({ mensaje: "No fue posible crear el proyecto" }, { status: 500 });
   }
-
 }
