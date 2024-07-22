@@ -1,8 +1,14 @@
 import { ProtectedRoute } from "@/src/components/common/protected-route";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ 
+  children,
+  params: { id }
+}: { 
+  children: React.ReactNode,
+  params: { id: string }
+}) {
   return (
-    <ProtectedRoute>
+    <ProtectedRoute id={id}>
       {children}
     </ProtectedRoute>
   );

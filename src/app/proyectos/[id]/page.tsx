@@ -4,6 +4,7 @@ import { Error } from "@/src/components/common/error"
 import { Popup } from "@/src/components/common/popup"
 import Link from "next/link"
 import { defaultUrl } from "@/src/const/common/consts"
+import { getRol } from "@/src/utils/supabase/get-rol-server"
 
 interface Props {
   params: {
@@ -48,6 +49,7 @@ export default async function ProjectPage({
   searchParams: { formulario }
 }: Props) {
   const data = await getData(id)
+  const { inProject, rol } = await getRol({ idProject: id })
 
   if ('error' in data && typeof data.error === 'string') {
     return (
@@ -66,7 +68,11 @@ export default async function ProjectPage({
       <p className="text-text-100 mt-3 mb-8">
         {data.carrera.nombre} | {data.tutor.nombre}
       </p>
-      <ButtonLink href="?formulario=true">Postularse</ButtonLink>
+      {
+        rol === 'estudiante' && !inProject && (
+          <ButtonLink href="?formulario=true">Postularse</ButtonLink>
+        )
+      }
       <h2
         className="text-2xl lg:text-3xl font-bold text-primary-100 text-center mt-6 lg:mt-10"
       >

@@ -1,11 +1,15 @@
-import { createClient } from "@/src/utils/supabase/server";
+import { getRol } from "@/src/utils/supabase/get-rol-server";
 import { notFound } from "next/navigation";
 
-export const ProtectedRoute = async ({ children }: { children: React.ReactNode }) => {
-  const supabase = createClient();
-  const { data: session } = await supabase.auth.getSession();
+export const ProtectedRoute = async ({
+  children, id
+}: {
+  children: React.ReactNode
+  id: string
+}) => {
+  const { inProject, rol } = await getRol({ idProject: id });
 
-  if (!session.session) {
+  if (!inProject && (rol === "coordinador" || rol === "tutor")) {
     return notFound();
   }
 

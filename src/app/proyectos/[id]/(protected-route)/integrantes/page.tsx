@@ -2,7 +2,7 @@ import { ButtonLink } from "@/src/components/common/button"
 import { Popup } from "@/src/components/common/popup"
 import { AddMemberForm } from "@/src/components/projects/members/add-member-form"
 import { MembersContainer } from "@/src/components/projects/members/members-container"
-import { getRol } from "@/src/utils/supabase/get-rol"
+import { getRol } from "@/src/utils/supabase/get-rol-server"
 
 interface Props {
   params: {

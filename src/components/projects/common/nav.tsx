@@ -6,6 +6,8 @@ import { ChevronsRight, Home, Logout, Menu, Persons, UserCircle } from "../../co
 import Link from "next/link"
 import clsx from "clsx"
 import { createClient } from "@/src/utils/supabase/client"
+import { Database } from "@/src/types/db/supabase"
+import { getRol } from "@/src/utils/supabase/get-rol-client"
 
 const links = [
   {
@@ -31,25 +33,39 @@ export const Nav = () => {
   const supabase = createClient()
   const { id } = useParams()
   const router = useRouter()
+  const [rol, setRol] = useState<{
+    rol: Database["public"]["Enums"]["rol"] | null,
+    inProject: boolean
+  }>({
+    rol: null,
+    inProject: false
+  })
 
   useEffect(() => {
-    const fetchUserName = async () => {
+    const fetchUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
 
-      if (user?.email) {
-        setUserEmail(user.email)
+      if (!user?.email) return
+
+      setUserEmail(user.email)
+
+      if (!Array.isArray(id)) {
+        const data = await getRol({ idProject: id })
+
+        setRol(data || { rol: null, inProject: false })
       }
     }
-
-    fetchUserName()
+    fetchUser()
   }, [])
+
+  if (!userEmail || !rol.inProject || !rol.rol) return null
 
   const handleOpenMenu = () => {
     setOpen(!open)
   }
 
   const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut()
+    await supabase.auth.signOut()
     router.push("/login")
   }
 

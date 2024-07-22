@@ -1,6 +1,6 @@
 import { ButtonLink } from "@/src/components/common/button"
 import { ProgressContainer } from "@/src/components/projects/progress/progress-container"
-import { getRol } from "@/src/utils/supabase/get-rol"
+import { getRol } from "@/src/utils/supabase/get-rol-server"
 
 interface Props {
   params: {
