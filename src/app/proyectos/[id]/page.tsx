@@ -5,6 +5,8 @@ import { Popup } from "@/src/components/common/popup"
 import Link from "next/link"
 import { defaultUrl } from "@/src/const/common/consts"
 import { getRol } from "@/src/utils/supabase/get-rol-server"
+import { EditProjectForm } from "@/src/components/projects/common/edit-project-form"
+import { DeleteButton } from "@/src/components/projects/common/delete-button"
 
 interface Props {
   params: {
@@ -68,11 +70,25 @@ export default async function ProjectPage({
       <p className="text-text-100 mt-3 mb-8">
         {data.carrera.nombre} | {data.tutor.nombre}
       </p>
-      {
-        rol === 'estudiante' && !inProject && (
-          <ButtonLink href="?formulario=true">Postularse</ButtonLink>
-        )
-      }
+      <section className="flex gap-5">
+        {
+          rol === 'estudiante' && !inProject && (
+            <ButtonLink href="?formulario=true">Postularse</ButtonLink>
+          )
+        }
+        {
+          rol === "tutor" && inProject && (
+            <>
+              <ButtonLink
+                href={`?formulario=true`}
+              >
+                Editar proyecto
+              </ButtonLink>
+              <DeleteButton id={id} />
+            </>
+          )
+        }
+      </section>
       <h2
         className="text-2xl lg:text-3xl font-bold text-primary-100 text-center mt-6 lg:mt-10"
       >
@@ -85,7 +101,7 @@ export default async function ProjectPage({
         {data.semillero.coordinador.nombre}
       </p>
       {
-        formulario && (
+        formulario && rol === 'estudiante' && (
           <Popup>
             <form
               className="bg-white shadow-md rounded-lg px-6 py-10 mb-4 w-5/6 max-w-md"
@@ -106,6 +122,13 @@ export default async function ProjectPage({
                 <ButtonLink href={`/proyectos/${id}`}>Postularse</ButtonLink>
               </footer>
             </form>
+          </Popup>
+        )
+      }
+      {
+        formulario && rol === 'tutor' && (
+          <Popup>
+            <EditProjectForm idProject={id} />
           </Popup>
         )
       }

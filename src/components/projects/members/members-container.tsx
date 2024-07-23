@@ -39,7 +39,7 @@ export const MembersContainer = async ({
         }
         {
           data.length === 0 && (
-            <p className={`text-text-100 ${className}`}>No hay avances :(</p>
+            <p className={`text-text-100 ${className}`}>No hay integrantes :(</p>
           )
         }
       </ul>

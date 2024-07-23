@@ -2,6 +2,11 @@ import { ProjectContainer } from "@/src/components/faculties/projects-container"
 import { Faculty, ProjectType } from "@/src/types/faculties/faculties";
 import { Error } from "@/src/components/common/error";
 import { defaultUrl } from "@/src/const/common/consts";
+import { getRol } from "@/src/utils/supabase/get-rol-server";
+import { ButtonLink } from "@/src/components/common/button";
+import { Nav } from "@/src/components/common/nav";
+import { Popup } from "@/src/components/common/popup";
+import { AddProjectForm } from "@/src/components/projects/common/add-project-form";
 
 interface FetchType extends Faculty {
   proyectos: ProjectType[]
@@ -13,11 +18,14 @@ const getData = async (id: string) => {
 }
 
 async function FacultiesPage({
-  params: { id }
+  params: { id },
+  searchParams: { formulario }
 }: {
-  params: { id: string }
+  params: { id: string },
+  searchParams: { formulario: string }
 }) {
   const data = await getData(id)
+  const { rol } = await getRol({ idProject: "" })
 
   if ('error' in data && typeof data.error === 'string') {
     return (
@@ -26,12 +34,32 @@ async function FacultiesPage({
   }
 
   return (
-    <main className="px-4 max-w-6xl lg:px-0 mx-auto">
-      <h1
-        className="text-3xl lg:text-4xl font-bold text-primary-100 text-center mt-6 lg:mt-10"
-      >{data.nombre}</h1>
-      <ProjectContainer projects={data.proyectos} className="my-10" />
-    </main>
+    <>
+      <Nav />
+      <main className="px-4 max-w-6xl lg:px-0 mx-auto">
+        <h1
+          className="text-3xl lg:text-4xl font-bold text-primary-100 text-center mt-2"
+        >{data.nombre}</h1>
+        <ProjectContainer projects={data.proyectos} className="my-10" />
+        {
+          rol === "tutor" && (
+            <ButtonLink
+              className="my-10"
+              href={`/facultades/${id}?formulario=true`}
+            >
+              Agregar proyecto
+            </ButtonLink>
+          )
+        }
+        {
+          formulario && (
+            <Popup>
+              <AddProjectForm />
+            </Popup>
+          )
+        }
+      </main>
+    </>
   )
 }
 

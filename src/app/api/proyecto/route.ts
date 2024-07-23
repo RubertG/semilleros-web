@@ -9,16 +9,16 @@ creamos un proyecto
 
 export async function POST(request: Request) {
 
-  const params = await request.json();
+  const body = await request.json();
   const supabase = createClient();
 
   const { data: proyecto } = await supabase.from("Proyecto").insert([{
-    nombre: params.nombre,
-    descripcion: params.descripcion,
-    estado: params.estado,
-    id_semillero: params.id_semillero,
-    id_tutor: params.id_tutor,
-    id_carrera: params.id_carrera
+    nombre: body.nombre,
+    descripcion: body.descripcion,
+    estado: body.estado,
+    id_semillero: body.id_semillero,
+    id_tutor: body.id_tutor,
+    id_carrera: body.id_carrera
   }]).select();
 
   if (proyecto) {

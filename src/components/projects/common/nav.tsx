@@ -51,7 +51,6 @@ export const Nav = () => {
 
       if (!Array.isArray(id)) {
         const data = await getRol({ idProject: id })
-
         setRol(data || { rol: null, inProject: false })
       }
     }

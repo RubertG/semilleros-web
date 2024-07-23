@@ -17,7 +17,7 @@ export default async function MembersPage({
   params: { id },
   searchParams: { formulario }
 }: Props) {
-  const rol = await getRol({ idProject: id })
+  const { rol } = await getRol({ idProject: id })
 
   return (
     <main className="pl-16 pr-4 max-w-4xl lg:px-0 mx-auto">
@@ -40,7 +40,8 @@ export default async function MembersPage({
           <Popup>
             <AddMemberForm idProject={id} />
           </Popup>
-        )}
+        )
+      }
     </main>
   )
 }

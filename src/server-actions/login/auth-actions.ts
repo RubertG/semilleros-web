@@ -30,7 +30,7 @@ export const signUp = async (data: SignUpInputs) => {
   const password = data.password;
   const supabase = createClient();
 
-  const { error } = await supabase.auth.signUp({
+  const { error, data: { user } } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -38,11 +38,12 @@ export const signUp = async (data: SignUpInputs) => {
     },
   });
 
-  if (error) {
+  if (error || !user) {
     return redirect("/login/register?mensaje=No se pudo guardar al usuario");
   }
 
   const { error: errorSaveUser } = await supabase.from("Usuario").insert({
+    id: user.id,
     nombre: data.name,
     rol: "estudiante",
     correo: data.email,

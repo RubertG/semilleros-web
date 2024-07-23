@@ -34,16 +34,13 @@ editamos un proyecto
 
 export async function PUT(request: Request, context: Context) {
   const { id } = context.params;
-  const params = await request.json();
+  const body = await request.json();
   const supabase = createClient();
 
   const { data: proyecto } = await supabase.from("Proyecto").update({
-    nombre: params.nombre,
-    descripcion: params.descripcion,
-    estado: params.estado,
-    id_semillero: params.id_semillero,
-    id_tutor: params.id_tutor,
-    id_carrera: params.id_carrera
+    nombre: body.nombre,
+    descripcion: body.descripcion,
+    estado: body.estado
   }).eq("id", id).select();
 
   if (proyecto) {
@@ -54,7 +51,7 @@ export async function PUT(request: Request, context: Context) {
 }
 
 /*
-PUT /api/proyecto/[id]
+DELETE /api/proyecto/[id]
 
 eliminamos un proyecto
 */

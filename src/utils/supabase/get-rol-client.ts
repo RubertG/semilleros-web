@@ -12,18 +12,18 @@ export const getRol = async ({
     rol: null,
     inProject: false
   }
-
+  
   const { data, error: errorRol } = await supabase
-    .from('Usuario')
-    .select('*')
-    .eq('id', user.id)
-    .single();
-
+  .from('Usuario')
+  .select('*')
+  .eq('id', user.id)
+  .single();
+  
   if (errorRol || !data) return {
     rol: null,
     inProject: false
   }
-
+  
   if (data.rol === "tutor") {
     const { data: tutorProyecto, error: errorTutorProyecto } = await supabase
       .from('Proyecto')
@@ -33,7 +33,7 @@ export const getRol = async ({
       .single();
 
     if (errorTutorProyecto || !tutorProyecto) return {
-      rol: null,
+      rol: data.rol,
       inProject: false
     }
 
@@ -54,9 +54,9 @@ export const getRol = async ({
     .eq('id_proyecto', idProject)
     .eq('id_estudiante', user.id)
     .single();
-
-  if (errorEstudianteProyecto || !estudianteProyecto) return {
-    rol: null,
+    
+    if (errorEstudianteProyecto || !estudianteProyecto) return {
+    rol: data.rol,
     inProject: false
   }
 

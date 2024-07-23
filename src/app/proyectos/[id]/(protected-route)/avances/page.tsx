@@ -11,7 +11,7 @@ interface Props {
 export default async function ProgressPage({
   params: { id }
 }: Props) {
-  const rol = await getRol({ idProject: id })
+  const { rol } = await getRol({ idProject: id })
 
   return (
     <main className="pl-16 pr-4 max-w-4xl lg:px-0 mx-auto">
