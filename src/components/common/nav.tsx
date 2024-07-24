@@ -1,8 +1,6 @@
 'use client'
 
-import { Database } from "@/src/types/db/supabase"
 import { createClient } from "@/src/utils/supabase/client"
-import { getRol } from "@/src/utils/supabase/get-rol-client"
 import { User } from "@supabase/supabase-js"
 import clsx from "clsx"
 import Link from "next/link"

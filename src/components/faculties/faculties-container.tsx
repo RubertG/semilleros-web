@@ -2,24 +2,14 @@ import { Database } from "@/src/types/db/supabase";
 import { FacultyCard } from "./faculty-card";
 import clsx from "clsx";
 import { defaultUrl } from "@/src/const/common/consts";
-import { createClient } from "@/src/utils/supabase/server";
 
 interface Props {
   className?: string;
 }
 
 const getData = async () => {
-  /* const res = await fetch(`${defaultUrl}/api/facultad`, { cache: 'no-store' });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/facultad`, { cache: 'no-store' });
   const data: Database["public"]["Tables"]["Facultad"]["Row"][] = await res.json();
-  return data; */
-  const supabase = createClient();
-
-  const { data, error } = await supabase
-    .from("Facultad")
-    .select("*");
-
-  if (error || !data) return;
-
   return data;
 };
 
