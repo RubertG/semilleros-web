@@ -9,7 +9,8 @@ interface Props {
 
 const getData = async () => {
   const res = await fetch(`${defaultUrl}/api/facultad`, { cache: 'no-store' });
-  return await res.json() as Promise<Database["public"]["Tables"]["Facultad"]["Row"][]> | null;
+  const data: Database["public"]["Tables"]["Facultad"]["Row"][] = await res.json();
+  return data;
 };
 
 export const FacultiesContainer = async ({ className }: Props) => {
