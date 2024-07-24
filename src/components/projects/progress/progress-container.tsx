@@ -1,10 +1,9 @@
-import { defaultUrl } from "@/src/const/common/consts"
 import { ProgressType } from "@/src/types/projects/projects"
 import clsx from "clsx"
 import { ProgressCard } from "./progress-card"
 
 const getData = async (id: string) => {
-  const res = await fetch(`${defaultUrl}/api/proyecto/avances/${id}`, { cache: 'no-store' })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/proyecto/avances/${id}`, { cache: 'no-store' })
   const data = await res.json()
   return data as ProgressType[]
 }

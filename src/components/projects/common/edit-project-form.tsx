@@ -5,7 +5,6 @@ import { createClient } from "@/src/utils/supabase/client"
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { defaultUrl } from "@/src/const/common/consts"
 import { useRouter } from "next/navigation"
 import { useForm } from "@/src/hooks/common/use-form"
 import { z } from "zod"
@@ -62,7 +61,7 @@ export const EditProjectForm = ({
         estado: formData.estado
       }
 
-      const res = await fetch(`${defaultUrl}/api/proyecto/${idProject}`, {
+      const res = await fetch(`/api/proyecto/${idProject}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

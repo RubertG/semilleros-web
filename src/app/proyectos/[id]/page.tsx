@@ -3,7 +3,6 @@ import { Database } from "@/src/types/db/supabase"
 import { Error } from "@/src/components/common/error"
 import { Popup } from "@/src/components/common/popup"
 import Link from "next/link"
-import { defaultUrl } from "@/src/const/common/consts"
 import { getRol } from "@/src/utils/supabase/get-rol-server"
 import { EditProjectForm } from "@/src/components/projects/common/edit-project-form"
 import { DeleteButton } from "@/src/components/projects/common/delete-button"
@@ -41,7 +40,7 @@ interface DataFetch extends Proyecto {
 }
 
 const getData = async (id: string) => {
-  const res = await fetch(`${defaultUrl}/api/proyecto/${id}`, { cache: 'no-store' })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/proyecto/${id}`, { cache: 'no-store' })
   const data: DataFetch = await res.json()
   return data
 }

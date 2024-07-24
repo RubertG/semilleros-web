@@ -1,10 +1,9 @@
-import { defaultUrl } from "@/src/const/common/consts"
 import { FetchType } from "@/src/types/projects/projects"
 import { MembersCard } from "./members-card"
 import clsx from "clsx"
 
 const getData = async (id: string) => {
-  const res = await fetch(`${defaultUrl}/api/proyecto/integrantes/${id}`, { cache: 'no-store' })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/proyecto/integrantes/${id}`, { cache: 'no-store' })
   const data = await res.json()
   return data as FetchType[]
 }

@@ -2,7 +2,6 @@
 
 import { ProgressType } from "@/src/types/projects/projects";
 import { SquareMinus } from "../../common/icons";
-import { defaultUrl } from "@/src/const/common/consts";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Database } from "@/src/types/db/supabase";
@@ -32,7 +31,7 @@ export const ProgressCard = ({ progress }: Props) => {
 
   const handleDelete = async () => {
     const res = await fetch(
-      `${defaultUrl}/api/proyecto/avances/${progress.id}`,
+      `/api/proyecto/avances/${progress.id}`,
       {
         method: "DELETE",
         headers: {

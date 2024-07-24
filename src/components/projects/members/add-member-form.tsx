@@ -1,6 +1,5 @@
 "use client"
 
-import { defaultUrl } from "@/src/const/common/consts"
 import { useForm } from "@/src/hooks/common/use-form"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
@@ -36,7 +35,7 @@ export const AddMemberForm = ({
   const { errors, handleSubmit, register, loading } = useForm<Inputs>({
     schema: Schema,
     actionSubmit: async (formData) => {
-      const res = await fetch(`${defaultUrl}/api/proyecto/integrantes/${idProject}`, {
+      const res = await fetch(`/api/proyecto/integrantes/${idProject}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

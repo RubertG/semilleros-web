@@ -1,7 +1,6 @@
 import { ProjectContainer } from "@/src/components/faculties/projects-container";
 import { Faculty, ProjectType } from "@/src/types/faculties/faculties";
 import { Error } from "@/src/components/common/error";
-import { defaultUrl } from "@/src/const/common/consts";
 import { getRol } from "@/src/utils/supabase/get-rol-server";
 import { ButtonLink } from "@/src/components/common/button";
 import { Nav } from "@/src/components/common/nav";
@@ -13,7 +12,7 @@ interface FetchType extends Faculty {
 }
 
 const getData = async (id: string) => {
-  const res = await fetch(`${defaultUrl}/api/facultad/proyectos/${id}`, { cache: 'no-store' })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/facultad/proyectos/${id}`, { cache: 'no-store' })
   return res.json() as Promise<FetchType>
 }
 

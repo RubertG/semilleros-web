@@ -1,6 +1,5 @@
 "use client"
 
-import { defaultUrl } from "@/src/const/common/consts"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
@@ -16,7 +15,7 @@ export const DeleteButton = ({
     <button
       onClick={async () => {
         setLoading(true)
-        await fetch(`${defaultUrl}/api/proyecto/${id}`, {
+        await fetch(`/api/proyecto/${id}`, {
           method: "DELETE",
         })
         router.push("/")

@@ -3,13 +3,12 @@
 import { FetchType } from "@/src/types/projects/projects";
 import { SquareMinus } from "../../common/icons";
 import Avvvatars from "avvvatars-react";
-import { defaultUrl } from "@/src/const/common/consts";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Database } from "@/src/types/db/supabase";
 import { getRol } from "@/src/utils/supabase/get-rol-client";
 
-interface Props extends FetchType {}
+interface Props extends FetchType { }
 
 export const MembersCard = ({ estudiante, proyecto }: Props) => {
   const router = useRouter();
@@ -31,7 +30,7 @@ export const MembersCard = ({ estudiante, proyecto }: Props) => {
 
   const handleDelete = async () => {
     const res = await fetch(
-      `${defaultUrl}/api/proyecto/integrantes/${proyecto.id}`,
+      `/api/proyecto/integrantes/${proyecto.id}`,
       {
         method: "DELETE",
         headers: {

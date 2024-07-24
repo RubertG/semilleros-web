@@ -1,6 +1,5 @@
 "use client"
 
-import { defaultUrl } from "@/src/const/common/consts"
 import { useForm } from "@/src/hooks/common/use-form"
 import { Database } from "@/src/types/db/supabase"
 import { createClient } from "@/src/utils/supabase/client"
@@ -61,7 +60,7 @@ export const ProjectForm = ({
         id_carrera: formData.id_carrera
       }
 
-      const res = await fetch(`${defaultUrl}/api/proyecto`, {
+      const res = await fetch(`/api/proyecto`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
