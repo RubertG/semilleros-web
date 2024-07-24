@@ -8,7 +8,10 @@ export const ProtectedRoute = async ({
   id: string
 }) => {
   const { inProject, rol } = await getRol({ idProject: id });
-  console.log(inProject, rol);
+
+  if (rol === null) {
+    return notFound();
+  }
 
   if (!inProject && rol === "estudiante") {
     return notFound();
